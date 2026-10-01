@@ -9,4 +9,16 @@ class Document extends Model
 {
     /** @use HasFactory<\Database\Factories\DocumentFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'member_id',
+        'filename',
+        'path',
+    ];
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
+
 }

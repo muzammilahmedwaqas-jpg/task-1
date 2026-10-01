@@ -18,7 +18,9 @@ class MemberFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->faker->name(),
+            'email' => fake()->faker->unique()->safeEmail(),
+            'phone' => fake()->faker->phoneNumber(),
         ];
     }
 }
