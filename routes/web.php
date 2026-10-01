@@ -9,5 +9,5 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return 'Login page placeholder (Add Laravel Breeze or custom auth controller here).';
+    return 'Login Page';
 })->name('login');
