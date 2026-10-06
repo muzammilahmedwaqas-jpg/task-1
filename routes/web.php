@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\DocumentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //Documents Routes
+    Route::post('/documents', [DocumentController::class, 'store'])->name('document.store');
+    Route::get('/documents/download/{document}',[DocumentController::class,'download'])->name('document.download');
 });
 
 Route::get('/members', [MemberController::class, 'index'])->name('members.index');

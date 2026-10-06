@@ -13,8 +13,9 @@ class ProfileController extends Controller
 {
     //users show function
     public function show(Request $request): View{
-        return view('profile.show', [
+        return view('profile.show',[
             'user' => $request->user(),
+            'documents' =>$request->user()->load('documents'),
         ]);
     }
     /**
