@@ -16,9 +16,9 @@ class Document extends Model
         'path',
     ];
 
-    public function member()
+    public function user()
     {
-        return $this->belongsTo(Member::class);
+        return $this->belongsTo(User::class, 'member_id');
     }
 
 }
