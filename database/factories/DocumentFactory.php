@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Member;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +18,7 @@ class DocumentFactory extends Factory
     public function definition(): array
     {
         return [
-            'member_id' => Member::factory(),
+            'member_id' => User::factory(),
             'filename' => fake()->word() . '.pdf',
             'path' => 'documents/' . fake()->uuid() . '.pdf',
         ];

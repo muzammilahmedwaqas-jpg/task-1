@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
