@@ -24,6 +24,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/documents/download/{document}',[DocumentController::class,'download'])->name('document.download');
 });
 
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/members/{member}', [AdminController::class, 'show'])->name('members.show');
+});
+
 Route::get('/members', [MemberController::class, 'index'])->name('members.index');
 
 require __DIR__.'/auth.php';
