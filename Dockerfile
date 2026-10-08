@@ -1,6 +1,5 @@
 FROM php:8.4-fpm-alpine
 
-# Dependencies & extensions
 RUN apk add --no-cache \
     nginx \
     bash \
@@ -26,7 +25,7 @@ COPY nginx.conf /etc/nginx/http.d/default.conf
 # Dependencies install
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Storage aur database ensure karein
+# Storage aur database folders
 RUN mkdir -p /var/www/html/storage/framework/sessions \
     /var/www/html/storage/framework/views \
     /var/www/html/storage/framework/cache \
@@ -35,9 +34,9 @@ RUN mkdir -p /var/www/html/storage/framework/sessions \
 
 RUN touch /var/www/html/database/database.sqlite
 
-# Full writable permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database \
-    && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
+# Permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database /var/www/html/public \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database /var/www/html/public
 
 EXPOSE 80
 
