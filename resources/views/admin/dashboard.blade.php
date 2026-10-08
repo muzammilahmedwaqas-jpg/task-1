@@ -43,7 +43,7 @@
                                         </span>
                                     </td>
                                     <td class="py-3.5 px-4 text-right">
-                                        <a href="{{ route('admin.members.show', $m) }}" class="inline-flex items-center px-3 py-1 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium rounded transition">
+                                        <a href="{{ route('admin.members.show', $m) }}" class="inline-flex items-center px-3 py-1 bg-indigo-600 hover:bg-indigo-700 text-black text-xs font-medium rounded transition">
                                             View Documents
                                         </a>
                                     </td>
