@@ -56,7 +56,7 @@
                                 <p class="text-red-600 text-xs mt-1.5 font-medium">{{ $message }}</p>
                             @enderror
                         </div>
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-black text-sm font-medium rounded-md transition shadow-sm">
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-md transition shadow-sm">
                             Upload File
                         </button>
                     </div>

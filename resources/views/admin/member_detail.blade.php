@@ -56,7 +56,7 @@
                                     </td>
                                     <td class="py-3 px-4 text-right">
                                         <a href="{{ route('document.download', $doc) }}"
-                                           class="inline-flex items-center px-3 py-1.5 bg-gray-900 hover:bg-gray-700 text-black text-xs font-medium rounded transition">
+                                           class="inline-flex items-center px-3 py-1.5 bg-gray-900 hover:bg-gray-700 text-white text-xs font-medium rounded transition">
                                             Download File
                                         </a>
                                     </td>
