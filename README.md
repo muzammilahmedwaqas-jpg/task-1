@@ -1,58 +1,65 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Member Portal & Document Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A production-ready full-stack Laravel application that provides a secure self-service portal for members to manage profiles and upload documents, along with an administrative back-office to oversee users and inspect submitted files.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🌐 Live Application
+- **Live URL**: [https://ironpulse-fitness-xgip.onrender.com](https://ironpulse-fitness-xgip.onrender.com)
+- **Repository**: Public GitHub Repository
+- **Hosting Platform**: Render Cloud (Dockerized Nginx + PHP-FPM)[cite: 6, 8]
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🔑 Default Credentials
 
-## Learning Laravel
+### 1. Administrator Account
+- **Access Route**: `/login` (automatically redirects to `/admin` dashboard)
+- **Email**: `admin@gmail.com`
+- **Password**: `password`
+- **Privileges**: Restricted `/admin` area access, member overview list, eager loaded document views, and unrestricted document downloads[cite: 7, 8].
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 2. Regular Member Account
+- **Access Route**: `/login` (redirects to `/profile`)[cite: 7, 8]
+- **Email**: `member1@portal.test` (or register a new member account via `/register`)[cite: 7, 8]
+- **Password**: `password`[cite: 7, 8]
+- **Privileges**: Manage personal account information, upload PDF files (max 25MB), view personal uploaded documents, and download owned files only[cite: 7, 8].
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🚀 Key Features Implemented
 
-## Agentic Development
+1. **Authentication & Profile Management**:
+   - Built with Laravel Breeze scaffolding extended with custom fields (`phone`).
+   - Member profile view rendering account information and uploaded document histories[cite: 7, 8].
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+2. **File Validation & Storage**:
+   - Custom `DocumentUploadRequest` enforcing strict PDF file validation up to 25MB.
+   - Streamline storage configuration mapped to the public disk under `/storage/documents`.
+   - Tuned Nginx `client_max_body_size 25M` and PHP directives (`upload_max_filesize = 25M`, `post_max_size = 25M`) to support large PDF payloads.
 
-```bash
-composer require laravel/boost --dev
+3. **Role Protection & Middleware**:
+   - `is_admin` boolean flag on the authentication schema[cite: 6, 7].
+   - Custom `AdminMiddleware` restricting access to `/admin` routes (aborts with 403 Forbidden for unprivileged sessions)[cite: 7, 8].
 
-php artisan boost:install
-```
+4. **Optimized Admin Operations**:
+   - Member directory with eager loaded document counts (`with('documents')`) to eliminate N+1 query bottlenecks[cite: 7, 8].
+   - Dedicated drill-down view showing member profile details and document records[cite: 7, 8].
+   - Document download route refactored to allow administrators to bypass ownership verification checks[cite: 7, 8].
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 💻 Local Installation Guide
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prerequisites
+- PHP 8.2 or 8.4[cite: 8]
+- Composer[cite: 6, 8]
+- Node.js & NPM
+- SQLite Extension
 
-## Code of Conduct
+### Step-by-Step Setup
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Clone the repository**:
+   ```bash
+   git clone <YOUR_PUBLIC_GITHUB_REPO_URL>
+   cd <REPO_FOLDER>
